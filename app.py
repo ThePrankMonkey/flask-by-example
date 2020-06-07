@@ -1,22 +1,15 @@
 from flask import Flask
-import random
 app = Flask(__name__)
 
 
 @app.route('/')
 def hello():
-    equation, answer = math_problem()
-    return f"{equation} = ??"
+    return "Hello World!"
 
-def math_problem():
-    lower_bound = 1
-    upper_bound = 20
-    a = random.randint(lower_bound, upper_bound)
-    b = random.randint(lower_bound, upper_bound)
-    operation = random.choice(['-', '+', '*', '/'])
-    equation = f"{a} {operation} {b}"
-    answer = eval(equation)
-    return equation, answer
+
+@app.route('/<name>')
+def hello_name(name):
+    return "Hello {}!".format(name)
 
 if __name__ == '__main__':
     app.run()
